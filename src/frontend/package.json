@@ -1,0 +1,30 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "setup": "npm i && dfx canister create backend && dfx generate backend && dfx deploy",
+    "start": "vite --port 3000",
+    "prebuild": "dfx generate",
+    "build": "vite build",
+    "format": "prettier --write \"src/**/*.{json,js,jsx,ts,tsx,css,scss}\""
+  },
+  "dependencies": {
+    "@dfinity/agent": "^3.2.6",
+    "@dfinity/candid": "^3.2.6",
+    "@dfinity/principal": "^3.2.6"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.9",
+    "@sveltejs/kit": "^2.43.2",
+    "@sveltejs/vite-plugin-svelte": "^6.2.0",
+    "dotenv": "^17.2.2",
+    "sass": "^1.63.6",
+    "svelte": "^5.39.5",
+    "svelte-check": "^4.0.1",
+    "typescript": "^5.6.2",
+    "vite": "^7.1.7",
+    "vite-plugin-environment": "^1.1.3"
+  }
+}

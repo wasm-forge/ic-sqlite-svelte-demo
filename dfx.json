@@ -1,0 +1,35 @@
+{
+  "canisters": {
+    "backend": {
+      "candid": "src/backend/backend.did",
+      "declarations": {
+        "node_compatibility": true
+      },
+      "package": "backend",
+      "build": [
+        "cargo build --release -p backend --target wasm32-wasip1",
+        "wasi2ic target/wasm32-wasip1/release/backend.wasm target/wasm32-wasip1/release/nowasi.wasm"
+      ],
+      "wasm": "target/wasm32-wasip1/release/nowasi.wasm",
+      "type": "custom"
+    },
+    "frontend": {
+      "dependencies": [
+        "backend"
+      ],
+      "source": [
+        "src/frontend/dist"
+      ],
+      "type": "assets",
+      "workspace": "frontend"
+    }
+  },
+  "defaults": {
+    "build": {
+      "args": "",
+      "packtool": ""
+    }
+  },
+  "output_env_file": ".env",
+  "version": 1
+}
