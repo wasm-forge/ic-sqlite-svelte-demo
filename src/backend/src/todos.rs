@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct Todo {
-    pub id: Option<u64>,
+    pub id: u64,
     pub person_id: u64,
     pub text: String,
     pub done: bool,
@@ -29,7 +29,18 @@ pub struct SelectTodo {
     pub person_id: u64,
 }
 
+fn validate_todo(todo: &str) -> Result<(), String> {
+    if todo.trim().is_empty() {
+        panic!("To-do cannot be empty!");
+        return Err("To-do cannot be empty!".to_string());
+    }
+
+    Ok(())
+}
+
 pub(crate) fn insert(todo: NewTodo) -> Result<Todo, String> {
+    validate_todo(&todo.text)?;
+
     with_connection(|conn| {
         let sql = r#"
             INSERT INTO todos (person_id, text, done)
@@ -54,10 +65,12 @@ pub(crate) fn insert(todo: NewTodo) -> Result<Todo, String> {
 }
 
 pub(crate) fn update(todo: UpdateTodo) -> Result<Todo, String> {
+    validate_todo(&todo.text)?;
+
     with_connection(|conn| {
         let sql = r#"
             UPDATE todos
-            SET name = ?2, email = ?3,
+            SET text = ?2, done = ?3
             WHERE id = ?1
             RETURNING
               id,
@@ -109,7 +122,7 @@ pub(crate) fn select(params: SelectTodo) -> Result<Vec<Todo>, String> {
               id,
               person_id,
               text,
-              done,
+              done
             FROM todos
             WHERE person_id = ?1
         "#;

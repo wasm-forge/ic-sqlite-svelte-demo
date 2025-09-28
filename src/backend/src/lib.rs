@@ -13,18 +13,44 @@ fn create_db() {
     with_connection(|conn| {
         conn.execute(
             "
+            DROP TABLE IF EXISTS todos;",
+            (),
+        )
+        .expect("Failed to prepare demo tables");
+
+        conn.execute(
+            "
+            DROP TABLE IF EXISTS persons;",
+            (),
+        )
+        .expect("Failed to prepare demo tables");
+
+        // Email validation at the SQL layer
+        // conn.execute(
+        //     "
+        //     CREATE TABLE IF NOT EXISTS persons (
+        //     id INTEGER PRIMARY KEY AUTOINCREMENT,
+        //     name TEXT,
+        //     email TEXT,
+        //     occupation TEXT,
+        //     CHECK (
+        //         LENGTH(email) - LENGTH(REPLACE(email, '@', '')) = 1
+        //         AND
+        //         email LIKE '%_@__%.__%'
+        //         AND
+        //         LOWER(email) GLOB '[a-z0-9@._-]*'
+        //     ));",
+        //     (),
+        // )
+        // .expect("Failed to create demo table");
+
+        conn.execute(
+            "
             CREATE TABLE IF NOT EXISTS persons (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT, 
-            occupation TEXT,
-            CHECK (
-                LENGTH(email) - LENGTH(REPLACE(email, '@', '')) = 1
-                AND
-                email LIKE '%_@__%.__%'
-                AND
-                LOWER(email) GLOB '[a-z0-9@._-]*'
-            ));",
+            occupation TEXT);",
             (),
         )
         .expect("Failed to create demo table");
@@ -57,7 +83,6 @@ fn add_demo_data() {
                 "Make coffee look Instagram-worthy ☕",
                 "Sketch a random object nearby ✏️",
                 "Dance break to your favorite song 💃",
-                "Add glitter to something (anything!) ✨",
             ],
         ),
         (
@@ -122,9 +147,13 @@ fn add_demo_data() {
 
 #[ic_cdk::init]
 fn init() {
+    reset_base();
+}
+
+#[ic_cdk::update]
+fn reset_base() {
     create_db();
     add_demo_data();
-    get_persons().unwrap();
 }
 
 #[ic_cdk::update]

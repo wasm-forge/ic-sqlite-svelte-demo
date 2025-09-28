@@ -7,7 +7,7 @@ type Person = record {
   email : text;
 };
 type Todo = record {
-  id : opt nat64;
+  id : nat64;
   done : bool;
   "text" : text;
   person_id : nat64;
@@ -29,4 +29,5 @@ service : () -> {
   new_todo : (NewTodo) -> (ResultTodo);
   update_person : (Person) -> (ResultPerson);
   update_todo : (UpdateTodo) -> (ResultTodo);
+  reset_base: () -> ();
 }

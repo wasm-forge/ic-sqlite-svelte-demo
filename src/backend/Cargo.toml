@@ -18,3 +18,4 @@ serde_json = "1.0"
 validator = { version = "0.20", features = ["derive"] }
 validator_derive = "0.20.0"
 anyhow = "1.0.99"
+email_address = "0.2.9"

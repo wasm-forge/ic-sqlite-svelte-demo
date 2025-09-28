@@ -31,7 +31,39 @@ pub struct QueryPersons {
     pub offset: u32,
 }
 
+fn validate_email(email: &str) -> Result<(), String> {
+    if email.trim().is_empty() {
+        return Err("E-mail cannot be empty!".to_string());
+    }
+
+    if !email_address::EmailAddress::is_valid(email) {
+        return Err("E-mail address is not valid!".to_string());
+    }
+
+    Ok(())
+}
+
+fn validate_name(name: &str) -> Result<(), String> {
+    if name.trim().is_empty() {
+        return Err("Name cannot be empty!".to_string());
+    }
+
+    Ok(())
+}
+
+fn validate_occupation(occupation: &str) -> Result<(), String> {
+    if occupation.trim().is_empty() {
+        return Err("Occupation cannot be empty!".to_string());
+    }
+
+    Ok(())
+}
+
 pub(crate) fn insert(person: NewPerson) -> Result<Person, String> {
+    validate_name(&person.name)?;
+    validate_occupation(&person.occupation)?;
+    validate_email(&person.email)?;
+
     with_connection(|conn| {
         let sql = r#"
             INSERT INTO persons (name, occupation, email)
@@ -56,6 +88,10 @@ pub(crate) fn insert(person: NewPerson) -> Result<Person, String> {
 }
 
 pub(crate) fn update(person: UpdatePerson) -> Result<Person, String> {
+    validate_name(&person.name)?;
+    validate_occupation(&person.occupation)?;
+    validate_email(&person.email)?;
+
     with_connection(|conn| {
         let sql = r#"
             UPDATE persons
