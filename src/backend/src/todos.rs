@@ -31,7 +31,6 @@ pub struct SelectTodo {
 
 fn validate_todo(todo: &str) -> Result<(), String> {
     if todo.trim().is_empty() {
-        panic!("To-do cannot be empty!");
         return Err("To-do cannot be empty!".to_string());
     }
 
