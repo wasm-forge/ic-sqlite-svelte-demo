@@ -13,19 +13,22 @@ type Todo = record {
   person_id : nat64;
 };
 type QueryPersons = record { offset : nat32; limit : nat32 };
+
 type ResultPerson = variant { Ok : Person; Err : text };
 type ResultTodo = variant { Ok : Todo; Err : text };
 type ResultVecPerson = variant { Ok : vec Person; Err : text };
 type ResultVecTodo = variant { Ok : vec Todo; Err : text };
+
 type SelectTodo = record { person_id : nat64 };
 type UpdateTodo = record { id : nat64; done : bool; "text" : text };
 service : () -> {
   delete_person : (nat64) -> (ResultPerson);
+  get_person : (nat64) -> (ResultPerson);
   delete_todo : (nat64) -> (ResultTodo);
   get_persons : () -> (ResultVecPerson);
   list_persons : (QueryPersons) -> (ResultVecPerson);
   list_todos : (SelectTodo) -> (ResultVecTodo);
-  new_person : (NewPerson) -> (ResultPerson);
+  new_person : (person: NewPerson) -> (ResultPerson);
   new_todo : (NewTodo) -> (ResultTodo);
   update_person : (Person) -> (ResultPerson);
   update_todo : (UpdateTodo) -> (ResultTodo);

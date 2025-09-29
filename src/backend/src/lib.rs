@@ -172,6 +172,11 @@ fn delete_person(id: u64) -> Result<Person, String> {
 }
 
 #[ic_cdk::update]
+fn get_person(id: u64) -> Result<Person, String> {
+    persons::get(id)
+}
+
+#[ic_cdk::update]
 fn list_persons(param: QueryPersons) -> Result<Vec<Person>, String> {
     persons::select(param)
 }

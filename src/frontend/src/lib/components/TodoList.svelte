@@ -33,6 +33,7 @@
       done: false,
       person_id: selectedPerson.id
     });
+    error = null;
 
     if ("Ok" in res) {
       todos = [...todos, res.Ok];

@@ -140,6 +140,30 @@ pub(crate) fn delete(id: u64) -> Result<Person, String> {
     })
 }
 
+pub(crate) fn get(id: u64) -> Result<Person, String> {
+    with_connection(|conn| {
+        let sql = r#"
+                SELECT
+                id,
+                name,
+                occupation,
+                email
+                FROM persons
+                WHERE id = ?1
+            "#;
+
+        conn.query_row(sql, (id,), |row| {
+            Ok(Person {
+                id: row.get(0)?,
+                name: row.get(1)?,
+                occupation: row.get(2)?,
+                email: row.get(3)?,
+            })
+        })
+        .map_err(|e| e.to_string())
+    })
+}
+
 pub(crate) fn select(params: QueryPersons) -> Result<Vec<Person>, String> {
     with_connection(|conn| {
         let sql = r#"

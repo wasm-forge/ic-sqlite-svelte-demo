@@ -1,7 +1,6 @@
 # `ic-sqlite-svelte-demo`
 
-Demo canister of using sqlite with a Svelte frontend.
-
+A simple demo canister of using Sqlite with a Svelte frontend.
 
 
 ## Running the project locally
@@ -13,3 +12,23 @@ dfx start --background
 
 dfx deploy
 ```
+
+## Features
+
+* Backend using [`ic-rusqlite`](https://github.com/wasm-forge/ic-rusqlite)
+* Svelte frontend
+* Server-side input validation
+* [`ic-test`](https://github.com/wasm-forge/ic-test) testing framework for testing the backend functions
+
+## Testing
+
+To run tests, you need to first compile the project, you can do it with:
+```bash
+dfx build
+```
+
+Then start the integration tests with:
+```bash
+cargo test -p tests
+```
+

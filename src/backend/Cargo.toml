@@ -8,9 +8,9 @@ edition = "2021"
 crate-type = ["cdylib"]
 
 [dependencies]
-candid = "=0.10.14"
+candid = "0.10"
 ic-cdk = "0.18"
-ic-rusqlite = {path = "../../../../wasi4ic/ic-rusqlite", version = "0.4.3", features = ["precompiled"]}
+ic-rusqlite = {version = "0.4.3", features = ["precompiled"]}
 
 ic-sql-migrate = { version = "0.0.4", features = ["sqlite"] }
 serde = { version = "1", features = ["derive"] }

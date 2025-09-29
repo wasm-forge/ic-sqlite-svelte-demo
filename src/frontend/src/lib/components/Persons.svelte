@@ -43,8 +43,6 @@
   }
 
   async function addPerson() {
-    if (!newPerson.name.trim()) return;
-
     const res = await backend.new_person(newPerson);
     if ("Ok" in res) {
       persons = [...persons, res.Ok];
@@ -65,7 +63,6 @@
     type="text"
     placeholder="Name"
     bind:value={newPerson.name}
-    required
   />
   <input
     type="text"
@@ -73,7 +70,6 @@
     bind:value={newPerson.occupation}
   />
   <input
-    type="email"
     placeholder="Email"
     bind:value={newPerson.email}
   />
