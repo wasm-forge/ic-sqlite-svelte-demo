@@ -1,4 +1,4 @@
-[![Build check](https://github.com/wasm-forge/ic-sqlite-svelte-demo/actions/workflows/build-check.yml/badge.svg)](https://github.com/wasm-forge/ic-sqlite-svelte-demo/actions/workflows/build-check.yml)
+[![Tests](https://github.com/wasm-forge/ic-sqlite-svelte-demo/actions/workflows/build-check.yml/badge.svg)](https://github.com/wasm-forge/ic-sqlite-svelte-demo/actions/workflows/build-check.yml)
 
 # `ic-sqlite-svelte-demo`
 
