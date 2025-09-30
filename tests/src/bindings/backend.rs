@@ -5,7 +5,7 @@ use candid::{self, CandidType, Decode, Deserialize, Encode, Principal};
 
 #[derive(CandidType, Clone, Debug, Deserialize, PartialEq)]
 pub struct Person {
-    pub id: u64,
+    pub id: u32,
     pub occupation: String,
     pub name: String,
     pub email: String,
@@ -19,10 +19,10 @@ pub enum ResultPerson {
 
 #[derive(CandidType, Clone, Debug, Deserialize, PartialEq)]
 pub struct Todo {
-    pub id: u64,
+    pub id: u32,
     pub done: bool,
     pub text: String,
-    pub person_id: u64,
+    pub person_id: u32,
 }
 
 #[derive(CandidType, Clone, Debug, Deserialize, PartialEq)]
@@ -45,7 +45,7 @@ pub struct QueryPersons {
 
 #[derive(CandidType, Clone, Debug, Deserialize, PartialEq)]
 pub struct SelectTodo {
-    pub person_id: u64,
+    pub person_id: u32,
 }
 
 #[derive(CandidType, Clone, Debug, Deserialize, PartialEq)]
@@ -65,12 +65,12 @@ pub struct NewPerson {
 pub struct NewTodo {
     pub done: bool,
     pub text: String,
-    pub person_id: u64,
+    pub person_id: u32,
 }
 
 #[derive(CandidType, Clone, Debug, Deserialize, PartialEq)]
 pub struct UpdateTodo {
-    pub id: u64,
+    pub id: u32,
     pub done: bool,
     pub text: String,
 }
@@ -81,7 +81,7 @@ pub struct BackendCanister {
 }
 
 impl BackendCanister {
-    pub fn delete_person(&self, arg0: u64) -> super::CallBuilder<ResultPerson> {
+    pub fn delete_person(&self, arg0: u32) -> super::CallBuilder<ResultPerson> {
         let args = Encode!(&arg0);
         self.caller.call(
             self.canister_id,
@@ -90,7 +90,7 @@ impl BackendCanister {
             args,
         )
     }
-    pub fn delete_todo(&self, arg0: u64) -> super::CallBuilder<ResultTodo> {
+    pub fn delete_todo(&self, arg0: u32) -> super::CallBuilder<ResultTodo> {
         let args = Encode!(&arg0);
         self.caller.call(
             self.canister_id,
@@ -99,8 +99,7 @@ impl BackendCanister {
             args,
         )
     }
-
-    pub fn get_person(&self, arg0: u64) -> super::CallBuilder<ResultPerson> {
+    pub fn get_person(&self, arg0: u32) -> super::CallBuilder<ResultPerson> {
         let args = Encode!(&arg0);
         self.caller.call(
             self.canister_id,

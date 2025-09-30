@@ -4,29 +4,29 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct Todo {
-    pub id: u64,
-    pub person_id: u64,
+    pub id: u32,
+    pub person_id: u32,
     pub text: String,
     pub done: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct NewTodo {
-    pub person_id: u64,
+    pub person_id: u32,
     pub text: String,
     pub done: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct UpdateTodo {
-    pub id: u64,
+    pub id: u32,
     pub text: String,
     pub done: bool,
 }
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct SelectTodo {
-    pub person_id: u64,
+    pub person_id: u32,
 }
 
 fn validate_todo(todo: &str) -> Result<(), String> {
@@ -90,7 +90,7 @@ pub(crate) fn update(todo: UpdateTodo) -> Result<Todo, String> {
     })
 }
 
-pub(crate) fn delete(id: u64) -> Result<Todo, String> {
+pub(crate) fn delete(id: u32) -> Result<Todo, String> {
     with_connection(|conn| {
         let sql = r#"
                 DELETE FROM todos

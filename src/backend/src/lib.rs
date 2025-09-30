@@ -167,12 +167,12 @@ fn update_person(person: UpdatePerson) -> Result<Person, String> {
 }
 
 #[ic_cdk::update]
-fn delete_person(id: u64) -> Result<Person, String> {
+fn delete_person(id: u32) -> Result<Person, String> {
     persons::delete(id)
 }
 
 #[ic_cdk::update]
-fn get_person(id: u64) -> Result<Person, String> {
+fn get_person(id: u32) -> Result<Person, String> {
     persons::get(id)
 }
 
@@ -200,7 +200,7 @@ fn update_todo(todo: UpdateTodo) -> Result<Todo, String> {
 }
 
 #[ic_cdk::update]
-fn delete_todo(id: u64) -> Result<Todo, String> {
+fn delete_todo(id: u32) -> Result<Todo, String> {
     todos::delete(id)
 }
 

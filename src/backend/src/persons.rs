@@ -4,7 +4,7 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct Person {
-    pub id: u64,
+    pub id: u32,
     pub name: String,
     pub occupation: String,
     pub email: String,
@@ -19,7 +19,7 @@ pub struct NewPerson {
 
 #[derive(Serialize, Deserialize, Debug, CandidType)]
 pub struct UpdatePerson {
-    pub id: u64,
+    pub id: u32,
     pub name: String,
     pub occupation: String,
     pub email: String,
@@ -120,7 +120,7 @@ pub(crate) fn update(person: UpdatePerson) -> Result<Person, String> {
     })
 }
 
-pub(crate) fn delete(id: u64) -> Result<Person, String> {
+pub(crate) fn delete(id: u32) -> Result<Person, String> {
     with_connection(|conn| {
         let sql = r#"
                 DELETE FROM persons
@@ -140,7 +140,7 @@ pub(crate) fn delete(id: u64) -> Result<Person, String> {
     })
 }
 
-pub(crate) fn get(id: u64) -> Result<Person, String> {
+pub(crate) fn get(id: u32) -> Result<Person, String> {
     with_connection(|conn| {
         let sql = r#"
                 SELECT
