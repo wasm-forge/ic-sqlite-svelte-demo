@@ -148,7 +148,7 @@ pub fn add_demo_data() {
 
 #[ic_cdk::init]
 fn init() {
-    reset_base();
+    create_db();
     add_demo_data();
 }
 
@@ -182,7 +182,7 @@ fn list_persons(param: QueryPersons) -> Result<Vec<Person>, String> {
     persons::select(param)
 }
 
-#[ic_cdk::query]
+#[ic_cdk::update]
 fn get_persons() -> Result<Vec<Person>, String> {
     persons::select(QueryPersons {
         limit: 1000,

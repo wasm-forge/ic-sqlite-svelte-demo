@@ -16,12 +16,15 @@
 
   onMount(async () => {
     if (autoLoad) {
+
       loadPersons()
     }
   });
 
   export async function loadPersons() {
+    
     const res = await backend.get_persons();
+    
     if ("Ok" in res) {
       persons = res.Ok;
       error = null;
@@ -29,6 +32,7 @@
       error = res.Err;
     }
   }
+  
 
   function selectPerson(person) {
     selectedPerson = person;
