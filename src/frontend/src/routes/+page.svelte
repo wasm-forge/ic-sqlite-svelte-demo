@@ -21,6 +21,20 @@
     }
   }
 
+  async function addDemoData() {
+    try {
+      await backend.add_demo_data();
+      selectedPerson = null; 
+
+      if (personsRef?.loadPersons) {
+        await personsRef.loadPersons();
+      }
+
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
 </script>
 
 <main>
@@ -34,6 +48,7 @@
     <section>
       <h1>📋 Persons & To-dos</h1>
       <button on:click={resetDatabase}>Reset Database</button>
+      <button on:click={addDemoData}>Add Demo Data</button>
     </section>
 
     <section>

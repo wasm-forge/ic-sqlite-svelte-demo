@@ -81,6 +81,15 @@ pub struct BackendCanister {
 }
 
 impl BackendCanister {
+    pub fn add_demo_data(&self) -> super::CallBuilder<()> {
+        let args = Encode!();
+        self.caller.call(
+            self.canister_id,
+            super::CallMode::Update,
+            "add_demo_data",
+            args,
+        )
+    }
     pub fn delete_person(&self, arg0: u32) -> super::CallBuilder<ResultPerson> {
         let args = Encode!(&arg0);
         self.caller.call(
@@ -101,18 +110,14 @@ impl BackendCanister {
     }
     pub fn get_person(&self, arg0: u32) -> super::CallBuilder<ResultPerson> {
         let args = Encode!(&arg0);
-        self.caller.call(
-            self.canister_id,
-            super::CallMode::Update,
-            "get_person",
-            args,
-        )
+        self.caller
+            .call(self.canister_id, super::CallMode::Query, "get_person", args)
     }
     pub fn get_persons(&self) -> super::CallBuilder<ResultVecPerson> {
         let args = Encode!();
         self.caller.call(
             self.canister_id,
-            super::CallMode::Update,
+            super::CallMode::Query,
             "get_persons",
             args,
         )
@@ -121,19 +126,15 @@ impl BackendCanister {
         let args = Encode!(&arg0);
         self.caller.call(
             self.canister_id,
-            super::CallMode::Update,
+            super::CallMode::Query,
             "list_persons",
             args,
         )
     }
     pub fn list_todos(&self, arg0: SelectTodo) -> super::CallBuilder<ResultVecTodo> {
         let args = Encode!(&arg0);
-        self.caller.call(
-            self.canister_id,
-            super::CallMode::Update,
-            "list_todos",
-            args,
-        )
+        self.caller
+            .call(self.canister_id, super::CallMode::Query, "list_todos", args)
     }
     pub fn new_person(&self, arg0: NewPerson) -> super::CallBuilder<ResultPerson> {
         let args = Encode!(&arg0);

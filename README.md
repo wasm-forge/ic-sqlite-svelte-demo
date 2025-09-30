@@ -4,15 +4,19 @@
 
 A simple demo canister of using Sqlite with a Svelte frontend.
 
+## Prerequisites
 
-## Running the project locally
+* [rust](https://doc.rust-lang.org/book/ch01-01-installation.html)
+* [dfx](https://internetcomputer.org/docs/current/developer-docs/setup/install/)
 
-If you want to deploy your project locally, you can use the following commands:
-
+Also, install some extra tools. For compilation:
 ```bash
-dfx start --background
+cargo install wasi2ic
+```
 
-dfx deploy
+For testing:
+```bash
+cargo install ic-test
 ```
 
 ## Features
@@ -21,6 +25,19 @@ dfx deploy
 * Svelte frontend
 * Server-side input validation
 * [`ic-test`](https://github.com/wasm-forge/ic-test) testing framework for testing the backend functions
+* No client-side input validation - this is to allow experimenting with the wrong data input
+
+## Running the project locally
+
+If you want to deploy the project locally, you can use the following commands:
+
+```bash
+dfx start --background
+
+npm install
+
+dfx deploy
+```
 
 ## Testing
 
@@ -33,4 +50,3 @@ Then start the integration tests with:
 ```bash
 cargo test -p tests
 ```
-

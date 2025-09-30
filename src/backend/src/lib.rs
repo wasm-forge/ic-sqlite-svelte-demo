@@ -72,7 +72,8 @@ fn create_db() {
     });
 }
 
-fn add_demo_data() {
+#[ic_cdk::update]
+pub fn add_demo_data() {
     let persons = [
         (
             "Olivia Bennett",
@@ -148,12 +149,12 @@ fn add_demo_data() {
 #[ic_cdk::init]
 fn init() {
     reset_base();
+    add_demo_data();
 }
 
 #[ic_cdk::update]
 fn reset_base() {
     create_db();
-    add_demo_data();
 }
 
 #[ic_cdk::update]
@@ -171,17 +172,17 @@ fn delete_person(id: u32) -> Result<Person, String> {
     persons::delete(id)
 }
 
-#[ic_cdk::update]
+#[ic_cdk::query]
 fn get_person(id: u32) -> Result<Person, String> {
     persons::get(id)
 }
 
-#[ic_cdk::update]
+#[ic_cdk::query]
 fn list_persons(param: QueryPersons) -> Result<Vec<Person>, String> {
     persons::select(param)
 }
 
-#[ic_cdk::update]
+#[ic_cdk::query]
 fn get_persons() -> Result<Vec<Person>, String> {
     persons::select(QueryPersons {
         limit: 100,
@@ -204,7 +205,7 @@ fn delete_todo(id: u32) -> Result<Todo, String> {
     todos::delete(id)
 }
 
-#[ic_cdk::update]
+#[ic_cdk::query]
 fn list_todos(param: SelectTodo) -> Result<Vec<Todo>, String> {
     todos::select(param)
 }
