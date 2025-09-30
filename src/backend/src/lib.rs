@@ -185,7 +185,7 @@ fn list_persons(param: QueryPersons) -> Result<Vec<Person>, String> {
 #[ic_cdk::query]
 fn get_persons() -> Result<Vec<Person>, String> {
     persons::select(QueryPersons {
-        limit: 100,
+        limit: 1000,
         offset: 0,
     })
 }
