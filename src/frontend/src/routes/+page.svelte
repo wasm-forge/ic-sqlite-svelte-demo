@@ -28,6 +28,9 @@
   <br /><br />
 
   <div style="width: 75%; margin: 10px auto; margin-bottom: 20px;">
+    Original source: <a href="https://github.com/wasm-forge/ic-sqlite-svelte-demo">GitHub repository</a>.
+    <br />
+
     <section>
       <h1>📋 Persons & To-dos</h1>
       <button on:click={resetDatabase}>Reset Database</button>
