@@ -1,3 +1,5 @@
+[![Build check](https://github.com/wasm-forge/ic-sqlite-svelte-demo/actions/workflows/build-check.yml/badge.svg)](https://github.com/wasm-forge/ic-sqlite-svelte-demo/actions/workflows/build-check.yml)
+
 # `ic-sqlite-svelte-demo`
 
 A simple demo canister of using Sqlite with a Svelte frontend.

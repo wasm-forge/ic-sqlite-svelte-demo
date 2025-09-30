@@ -39,12 +39,13 @@ jobs:
           rustup target add wasm32-wasip1
           cargo install wasi2ic
 
-      - name: Build example
+      - name: Build
         run: |
           cargo build -p backend --target wasm32-wasip1 --release
-          wasi2ic target/wasm32-wasip1/release/backend.wasm target/wasm32-wasip1/release/backend_wasi2ic.wasm
+          wasi2ic target/wasm32-wasip1/release/backend.wasm target/wasm32-wasip1/release/nowasi.wasm
           echo "Build successful!"
-    
+
       - name: Run tests
         run: |
           cargo test -p tests
+          echo "Tests successful!"
