@@ -8,9 +8,11 @@
       "package": "backend",
       "build": [
         "cargo build --release -p backend --target wasm32-wasip1",
-        "wasi2ic target/wasm32-wasip1/release/backend.wasm target/wasm32-wasip1/release/nowasi.wasm"
+        "wasi2ic target/wasm32-wasip1/release/backend.wasm target/wasm32-wasip1/release/nowasi.wasm",
+        "ic-wasm -o target/wasm32-wasip1/release/shrinked.wasm target/wasm32-wasip1/release/nowasi.wasm shrink",
+        "gzip -f target/wasm32-wasip1/release/shrinked.wasm"
       ],
-      "wasm": "target/wasm32-wasip1/release/nowasi.wasm",
+      "wasm": "target/wasm32-wasip1/release/shrinked.wasm.gz",
       "type": "custom"
     },
     "frontend": {

@@ -7,10 +7,13 @@ edition = "2021"
 candid = "0.10"
 cargo_metadata = "0.19.1"
 ic-test = {version = "0.3.0-cdk18"}
-#ic-test = {path = "../../ic-test"}
 pocket-ic = "9.0.2"
 serde = "1.0.219"
 serde_bytes = "0.11.17"
 tokio = { version = "1.47.1", features = ["full"] }
 
 convert_case = "0.8.0"
+
+[profile.release]
+lto = true
+opt-level = 'z'

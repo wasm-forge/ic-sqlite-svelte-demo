@@ -38,6 +38,8 @@ jobs:
         run: |
           rustup target add wasm32-wasip1
           cargo install wasi2ic
+          cargo install ic-wasm
+          cargo install ic-test
 
       - name: Build
         run: |

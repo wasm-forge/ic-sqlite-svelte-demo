@@ -9,9 +9,11 @@ A simple demo canister of using Sqlite with a Svelte frontend.
 * [rust](https://doc.rust-lang.org/book/ch01-01-installation.html)
 * [dfx](https://internetcomputer.org/docs/current/developer-docs/setup/install/)
 
-Also, install some extra tools. For compilation:
+Also, install some extra tools. For development:
 ```bash
 cargo install wasi2ic
+
+cargo install ic-wasm
 ```
 
 For testing:
