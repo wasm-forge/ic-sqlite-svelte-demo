@@ -23,6 +23,7 @@
 
   export async function loadPersons() {
     
+    await backend.dummy_update();
     const res = await backend.get_persons();
     
     if ("Ok" in res) {

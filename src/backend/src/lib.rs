@@ -183,6 +183,11 @@ fn list_persons(param: QueryPersons) -> Result<Vec<Person>, String> {
 }
 
 #[ic_cdk::update]
+fn dummy_update() {
+    //
+}
+
+#[ic_cdk::query]
 fn get_persons() -> Result<Vec<Person>, String> {
     persons::select(QueryPersons {
         limit: 1000,

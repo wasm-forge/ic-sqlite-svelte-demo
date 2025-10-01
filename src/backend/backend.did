@@ -26,6 +26,7 @@ service : () -> {
   get_person : (nat32) -> (ResultPerson) query;
   delete_todo : (nat32) -> (ResultTodo);
   get_persons : () -> (ResultVecPerson);
+  dummy_update : () -> ();
   list_persons : (QueryPersons) -> (ResultVecPerson) query;
   list_todos : (SelectTodo) -> (ResultVecTodo)  query;
   new_person : (person: NewPerson) -> (ResultPerson);
