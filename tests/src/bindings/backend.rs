@@ -108,6 +108,15 @@ impl BackendCanister {
             args,
         )
     }
+    pub fn dummy_update(&self) -> super::CallBuilder<()> {
+        let args = Encode!();
+        self.caller.call(
+            self.canister_id,
+            super::CallMode::Update,
+            "dummy_update",
+            args,
+        )
+    }
     pub fn get_person(&self, arg0: u32) -> super::CallBuilder<ResultPerson> {
         let args = Encode!(&arg0);
         self.caller
@@ -206,7 +215,7 @@ pub fn canister_id() -> Option<Principal> {
 
 pub fn wasm() -> Option<Vec<u8>> {
     let mut path = std::path::PathBuf::new();
-    path.push("../target/wasm32-wasip1/release/nowasi.wasm");
+    path.push("../target/wasm32-wasip1/release/shrinked.wasm.gz");
     let wasm =
         std::fs::read(path.as_path()).unwrap_or_else(|_| panic!("wasm binary not found: {path:?}"));
     Some(wasm)

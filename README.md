@@ -4,23 +4,6 @@
 
 A simple demo canister of using Sqlite with a Svelte frontend.
 
-## Prerequisites
-
-* [rust](https://doc.rust-lang.org/book/ch01-01-installation.html)
-* [dfx](https://internetcomputer.org/docs/current/developer-docs/setup/install/)
-
-Also, install some extra tools. For development:
-```bash
-cargo install wasi2ic
-
-cargo install ic-wasm
-```
-
-For testing:
-```bash
-cargo install ic-test
-```
-
 ## Features
 
 * Backend using [`ic-rusqlite`](https://github.com/wasm-forge/ic-rusqlite)
@@ -28,6 +11,25 @@ cargo install ic-test
 * Server-side input validation
 * [`ic-test`](https://github.com/wasm-forge/ic-test) testing framework for testing the backend functions
 * No client-side input validation - this is to allow experimenting with the wrong data input
+
+## Prerequisites
+
+* [rust](https://doc.rust-lang.org/book/ch01-01-installation.html)
+* [dfx](https://internetcomputer.org/docs/current/developer-docs/setup/install/)
+
+Also, install some extra tools. 
+
+For canister development:
+```bash
+cargo install wasi2ic
+
+cargo install ic-wasm
+```
+
+For test development:
+```bash
+cargo install ic-test
+```
 
 ## Running the project locally
 

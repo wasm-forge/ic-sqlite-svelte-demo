@@ -10,7 +10,7 @@
         "service_name": "BackendCanister",
         "candid_path": "src/backend/backend.did",
         "generate_bindings": true,
-        "wasm": "target/wasm32-wasip1/release/nowasi.wasm",
+        "wasm": "target/wasm32-wasip1/release/shrinked.wasm.gz",
         "specified_id": null
       },
       "frontend": {
