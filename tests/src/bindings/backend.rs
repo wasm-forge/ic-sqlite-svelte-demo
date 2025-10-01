@@ -215,7 +215,7 @@ pub fn canister_id() -> Option<Principal> {
 
 pub fn wasm() -> Option<Vec<u8>> {
     let mut path = std::path::PathBuf::new();
-    path.push("../target/wasm32-wasip1/release/shrinked.wasm.gz");
+    path.push("../target/wasm32-wasip1/release/nowasi.wasm");
     let wasm =
         std::fs::read(path.as_path()).unwrap_or_else(|_| panic!("wasm binary not found: {path:?}"));
     Some(wasm)

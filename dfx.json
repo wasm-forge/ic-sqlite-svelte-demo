@@ -9,10 +9,9 @@
       "build": [
         "cargo build --release -p backend --target wasm32-wasip1",
         "wasi2ic target/wasm32-wasip1/release/backend.wasm target/wasm32-wasip1/release/nowasi.wasm",
-        "ic-wasm -o target/wasm32-wasip1/release/shrinked.wasm target/wasm32-wasip1/release/nowasi.wasm shrink",
-        "gzip -f target/wasm32-wasip1/release/shrinked.wasm"
+        "ic-wasm -o target/wasm32-wasip1/release/shrinked.wasm target/wasm32-wasip1/release/nowasi.wasm shrink"
       ],
-      "wasm": "target/wasm32-wasip1/release/shrinked.wasm.gz",
+      "wasm": "target/wasm32-wasip1/release/nowasi.wasm",
       "type": "custom"
     },
     "frontend": {
